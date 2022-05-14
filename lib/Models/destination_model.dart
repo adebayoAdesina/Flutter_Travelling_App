@@ -13,10 +13,27 @@ class Destination {
     this.country,
     this.description,
     this.activities,
-});
+  });
 }
 
 List<Activity> activities = [
+  Activity(
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
+    name: 'London',
+    type: 'Sightseeing Tour',
+    startTimes: ['9:00 am', '11:00 am'],
+    rating: 5,
+    price: 30,
+  ),
+  Activity(
+    imageUrl: '',
+    name: 'London',
+    type: 'Sightseeing Tour',
+    startTimes: ['9:00 am', '11:00 am'],
+    rating: 5,
+    price: 30,
+  ),
   Activity(
     imageUrl: '',
     name: 'London',
@@ -29,9 +46,26 @@ List<Activity> activities = [
 
 List<Destination> destinations = [
   Destination(
-    imageUrl: '',
-    city: 'London',
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
+    city: 'London1',
     country: 'Sightseeing Tour',
+    description: 'hello world',
+    activities: activities,
+  ),
+  Destination(
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
+    city: 'Nigeria',
+    country: 'Sightseeing Tour2',
+    description: 'hello world2',
+    activities: activities,
+  ),
+  Destination(
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
+    city: 'India',
+    country: 'Sightseeing Tour3',
     description: 'hello world',
     activities: activities,
   ),
