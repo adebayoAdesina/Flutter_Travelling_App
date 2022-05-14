@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travelling_app/Color/colors.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../Models/activity_model.dart';
@@ -14,6 +15,15 @@ class DestinationScreen extends StatefulWidget {
 }
 
 class _DestinationScreenState extends State<DestinationScreen> {
+  Text _buildRatingStars(int rating) {
+    String stars = '';
+    for (var i = 0; i < rating; i++) {
+      stars += '⭐ ';
+      stars.trim();
+    }
+    return Text(stars);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -23,7 +33,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
           Stack(
             children: [
               Container(
-                height: size.width,
+                height: size.height * 0.5,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     boxShadow: const [
@@ -56,7 +66,7 @@ class _DestinationScreenState extends State<DestinationScreen> {
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.arrow_back,
                           size: 30,
                         )),
@@ -64,13 +74,13 @@ class _DestinationScreenState extends State<DestinationScreen> {
                       children: [
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.search,
                               size: 30,
                             )),
                         IconButton(
                             onPressed: () {},
-                            icon: Icon(
+                            icon: const Icon(
                               FontAwesomeIcons.arrowDownShortWide,
                               size: 30,
                             ))
@@ -125,31 +135,103 @@ class _DestinationScreenState extends State<DestinationScreen> {
           ),
           Expanded(
             child: ListView.builder(
+              padding: const EdgeInsets.only(top: 10, bottom: 15),
               itemCount: widget.destination.activities!.length,
               itemBuilder: (BuildContext context, int index) {
                 Activity activity = widget.destination.activities![index];
                 return Stack(
                   children: [
                     Container(
-                      margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
-                      height: 70,
+                      margin: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                      height: 170,
                       width: double.infinity,
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20)),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('${activity.name}'),
-                              Text('\$${activity.price}')
-                            ],
-                          ),
-                          Text('${activity.type}'),
-                          // _buildRatingStars(activity.rating)
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(120, 20, 20, 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  width: 120,
+                                  child: Text(
+                                    '${activity.name}',
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                Column(
+                                  children: [
+                                    Text(
+                                      '\$${activity.price}',
+                                      style: const TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    const Text(
+                                      'per tax',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.grey),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                            Text('${activity.type}'),
+                            _buildRatingStars(activity.rating!.toInt()),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(3),
+                                  alignment: Alignment.center,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      color: accentColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(activity.startTimes![0]),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.all(3),
+                                  alignment: Alignment.center,
+                                  width: 70,
+                                  decoration: BoxDecoration(
+                                      color: accentColor,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(activity.startTimes![1]),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 25,
+                      top: 15,
+                      bottom: 15,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image(
+                          image: AssetImage('${activity.imageUrl}'),
+                          fit: BoxFit.cover,
+                          width: 100,
+                        ),
                       ),
                     )
                   ],

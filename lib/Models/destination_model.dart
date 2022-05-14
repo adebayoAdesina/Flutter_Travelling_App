@@ -27,15 +27,17 @@ List<Activity> activities = [
     price: 30,
   ),
   Activity(
-    imageUrl: '',
-    name: 'London',
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
+    name: 'London London London London',
     type: 'Sightseeing Tour',
     startTimes: ['9:00 am', '11:00 am'],
     rating: 3,
     price: 30,
   ),
   Activity(
-    imageUrl: '',
+    imageUrl:
+        'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg',
     name: 'London',
     type: 'Sightseeing Tour',
     startTimes: ['9:00 am', '11:00 am'],
