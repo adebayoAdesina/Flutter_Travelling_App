@@ -31,7 +31,7 @@ List<Activity> activities = [
     name: 'London',
     type: 'Sightseeing Tour',
     startTimes: ['9:00 am', '11:00 am'],
-    rating: 5,
+    rating: 3,
     price: 30,
   ),
   Activity(
@@ -39,7 +39,7 @@ List<Activity> activities = [
     name: 'London',
     type: 'Sightseeing Tour',
     startTimes: ['9:00 am', '11:00 am'],
-    rating: 5,
+    rating: 4,
     price: 30,
   ),
 ];

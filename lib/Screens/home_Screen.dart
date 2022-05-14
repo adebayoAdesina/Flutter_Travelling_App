@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  int _currentTab = 0;
 
   List<IconData> _icons = [
     FontAwesomeIcons.plane,
@@ -49,38 +50,59 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
-        child: ListView(
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(
-                left: 20.0,
-                right: 120.0,
-              ),
-              child: Text(
-                'What you would like fo find?',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
+          child: ListView(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 20.0, right: 120.0, top: 30),
+            child: Text(
+              'What you would like fo find?',
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: _icons
-                  .asMap()
-                  .entries
-                  .map((e) => _buildIcons(e.key))
-                  .toList(),
-            ),
-            const SizedBox(height: 20.0),
-            const DestinationWidget(),
-            const SizedBox(height: 20.0),
-            const HostelCarouselWidget()
-          ],
-        ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children:
+                _icons.asMap().entries.map((e) => _buildIcons(e.key)).toList(),
+          ),
+          const SizedBox(height: 20.0),
+          const DestinationWidget(),
+          const SizedBox(height: 20.0),
+          const HostelCarouselWidget()
+        ],
       )),
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: primaryColor,
+        onTap: (int value) {
+          setState(() {
+            _currentTab = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.search,
+                size: 30.0,
+              ),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.local_pizza,
+                size: 30.0,
+              ),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: CircleAvatar(
+                radius: 15.0,
+                backgroundImage: AssetImage(
+                    'assets/images/depositphotos_226524070-stock-photo-shopping-cart-yellow-background.jpg'),
+              ),
+              label: '')
+        ],
+        currentIndex: _currentTab,
+      ),
     );
   }
 }
