@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   int _currentTab = 0;
 
-  List<IconData> _icons = [
+  final List<IconData> _icons = [
     FontAwesomeIcons.plane,
     FontAwesomeIcons.bed,
     FontAwesomeIcons.personWalking,
